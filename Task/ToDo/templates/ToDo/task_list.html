@@ -1,0 +1,21 @@
+<a href="{% url 'task-create' %}">Add activity</a>
+<table>
+    <tr>
+        <th>Item</th>
+    </tr>
+    {% for task in tasks %}
+    <tr>
+        <td>
+            {{task.title}}
+        </td>
+        <td>
+            <a href="{% url 'tasks' task.id%}">View</a>
+            <a href="{% url 'task-update' task.id%}">Edit</a>
+            <a href="{% url 'task-delete' task.id%}">Delete</a>
+        </td>
+    </tr>
+    
+    {% empty %}
+    <h3>No items in list</h3>
+    {% endfor %}
+</table>
