@@ -8,6 +8,13 @@
 {% endif%}
 <br>
 <a href="{% url 'task-create' %}">Add activity</a>
+
+<form method="GET">
+    <input type="text" name="search-area" value="{{search_input}}">
+    <input type="submit" value="Search">
+     
+</form>
+
 <table>
     
     <tr>
