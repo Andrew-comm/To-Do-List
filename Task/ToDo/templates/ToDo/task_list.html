@@ -1,5 +1,15 @@
+
+<h2>My Tasks</h2>
+{% if request.user.is_authenticated %}
+<h2>Welcome {{request.user}}</h2>
+<a href="{% url 'logout' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+{% endif%}
+<br>
 <a href="{% url 'task-create' %}">Add activity</a>
 <table>
+    
     <tr>
         <th>Item</th>
     </tr>
@@ -9,7 +19,7 @@
             {{task.title}}
         </td>
         <td>
-            <a href="{% url 'tasks' task.id%}">View</a>
+            <a href="{% url 'task' task.id%}">View</a>
             <a href="{% url 'task-update' task.id%}">Edit</a>
             <a href="{% url 'task-delete' task.id%}">Delete</a>
         </td>
