@@ -4,7 +4,7 @@ from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views.generic import DetailView
-from django.views.generic import CreateView,UpdateView, DeleteView, FormView
+from django.views.generic.edit import CreateView,UpdateView, DeleteView, FormView
 
 from . models import Task
 from django.urls import reverse_lazy
@@ -28,7 +28,7 @@ class RegisterPage(FormView):
     template_name = 'ToDo/register.html'
     form_class = UserCreationForm
     redirect_authenticated_user = True
-    success_url = reverse_lazy('tasks')
+    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
         user = form.save()
@@ -56,7 +56,7 @@ class TaskList(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tasks'] =  context['tasks'] .filter(user = self.request.user)
-        context ['count'] = context['tasks'].filter(complete=False)
+        context ['count'] = context['tasks'].filter(complete=False).count()
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
             context['tasks'] = context['tasks'].filter(
@@ -74,21 +74,23 @@ class TaskDetail( LoginRequiredMixin, DetailView):
 class TaskCreate(LoginRequiredMixin, CreateView):
     model= Task
     fields = ['title','description', 'complete']
-    success_url =   reverse_lazy('tasks')
+    success_url =  reverse_lazy('tasks')
     
     def form_valid(self, form):
         form.instance.user=self.request.user
         return super(TaskCreate, self).form_valid(form)
+        
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     fields = ['title','description', 'complete']
     success_url = reverse_lazy('tasks')
+    
 
 
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
     fields = '__all__'
-    success_url = reverse_lazy('tasks')
+    success_url=reverse_lazy('tasks')
     context_object_name = 'tasks'
     template_name = 'ToDo/tasks_form.html'
