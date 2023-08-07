@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+
+
 from ToDo import views
 from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('view-profile', views.UserProfileDetailView.as_view(), name='view-profile'),
     path('login', views.CutomLogin.as_view(), name='login'),
     path('register', views.RegisterPage.as_view(), name='register'),
     path('logout', LogoutView.as_view(next_page = 'login'), name='logout'),
@@ -29,3 +34,5 @@ urlpatterns = [
     path('task-update/<int:pk>/', views.TaskUpdate.as_view(), name='task-update'),
     path('task-delete/<int:pk>/', views.TaskDelete.as_view(), name='task-delete'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

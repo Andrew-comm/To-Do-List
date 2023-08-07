@@ -1,13 +1,15 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'styles.css' %}">
 <div class="header">
+    <img src="{% static 'images/logo.png' %}">
     <h3 class="radial-text">TaskMaster: Organize Your Life </h3>
+    <a href="{% url 'view-profile' %}">profile</a>
 </div>
 
 <div class="container">
     {% if request.user.is_authenticated %}
 <h2>Welcome {{request.user |title}} </h2>
-<small>You have {{count}} incomplete task{{ count|pluralize:"s" }}</small>
+<span>You have <small  class="badge">{{count}}</small> incomplete task{{ count|pluralize:"s" }}</span>
 <a href="{% url 'logout' %}">Logout</a>
 {% else %}
 <a href="{% url 'login' %}">Login</a>
@@ -15,18 +17,13 @@
 
 </div>
 
-
-
-
-
 <a href="{% url 'task-create' %}">Add activity</a>
+<br>
 
-<form method="GET">
-    <input type="text" name="search-area" value="{{search_input}}">
-    <input type="submit" value="Search">
-     
+<form class="search-form" method="GET">
+    <input class="search-input" type="text" name="search-area" value="{{search_input}}" placeholder="Enter your search">
+    <input class="search-button" type="submit" value="Search">
 </form>
-
 <table>
     
     <tr>
@@ -36,8 +33,10 @@
     <tr>
         <td>
             {{task.title}}
+            
         </td>
         <td>
+           
             <a href="{% url 'task' task.id%}">View</a>
             <a href="{% url 'task-update' task.id%}">Edit</a>
             <a href="{% url 'task-delete' task.id%}">Delete</a>

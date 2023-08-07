@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>Welcome, {{ user_profile.user.username }}!</h1>
+
+    <div>
+        <h2>Profile Image</h2>
+        {% if user_profile.profile_image %}
+            <img src="{{ user_profile.profile_image.url }}" alt="Profile Image">
+        {% else %}
+            <p>No profile image uploaded yet.</p>
+        {% endif %}
+    </div>
+
+
+    <div>
+        <h2>Edit Profile</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+           
+            <label for="profile_image">Profile Image:</label>
+            <input type="file" name="profile_image">
+            <br>
+            <input type="submit" value="Update Profile">
+        </form>
+    </div>
+</body>
+</html>

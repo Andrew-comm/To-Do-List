@@ -1,7 +1,11 @@
-<form method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Login">
-    <p>Don't have an account?</p><a href="{% url 'register' %}">Register</a>
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
 
-</form>
+<div class="login-container">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="btn-submit" type="submit" value="Login">
+        <p>Don't have an account?</p><a class="register-link" href="{% url 'register' %}">Register</a>
+    </form>
+</div>
