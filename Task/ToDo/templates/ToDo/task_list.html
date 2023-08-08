@@ -1,5 +1,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+Vl5LE5PxdpTz5Sv4R3/c2E1vfa0PxRD1EJt8tZANvHg4b" crossorigin="anonymous">
+
 <div class="header">
     <img src="{% static 'images/logo.png' %}">
     <h3 class="radial-text">TaskMaster: Organize Your Life </h3>
@@ -17,13 +19,22 @@
 
 </div>
 
-<a href="{% url 'task-create' %}">Add activity</a>
-<br>
-
+<div class="second-row">
+    <div class="fab-container">
+        <a href="{% url 'task-create' %}" class="add-activity-fab">Add
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+    
+   
+   
 <form class="search-form" method="GET">
     <input class="search-input" type="text" name="search-area" value="{{search_input}}" placeholder="Enter your search">
     <input class="search-button" type="submit" value="Search">
 </form>
+
+</div>
+
 <table>
     
     <tr>
@@ -35,9 +46,10 @@
             {{task.title}}
             
         </td>
+        {{task.description}}
         <td>
            
-            <a href="{% url 'task' task.id%}">View</a>
+           
             <a href="{% url 'task-update' task.id%}">Edit</a>
             <a href="{% url 'task-delete' task.id%}">Delete</a>
         </td>

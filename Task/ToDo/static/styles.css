@@ -1,6 +1,7 @@
  body {
-    /* background-image: linear-gradient(to right, rgb(47, 47, 51), rgb(81, 88, 81)); */
+    
     background-image: url("images/background.png"); 
+    /* background-image: linear-gradient(to right, rgb(199, 199, 243), rgb(230, 248, 230));  */
   } 
    
 .header{
@@ -111,7 +112,7 @@
 }
 
 
-/* styles.css */
+
 .login-container {
     max-width: 400px;
     margin: 0 auto;
@@ -151,11 +152,19 @@
     color: #0056b3;
 }
 
+.second-row{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    flex-basis: 60%;
+ 
+}
+
 .search-form {
     justify-content: center;
-    /* text-align: center; */
-    margin-top: 20px;
-    margin-bottom: 20px;
+    text-align: center; 
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .search-input {
@@ -164,6 +173,7 @@
     border-radius: 5px;
     font-size: 16px;
     width: 300px;
+    margin-left: 300px;
 }
 
 .search-button {
@@ -179,3 +189,102 @@
 .search-button:hover {
     background-color: #0056b3;
 }
+
+.fab-container {    
+    bottom: 20px;
+    right: 20px;
+}
+
+.add-activity-fab {
+    display: block;
+    width: 60px;
+    height: 60px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    line-height: 60px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.add-activity-fab:hover {
+    background-color: #0056b3;
+}
+
+
+.task-create{
+    background:linear-gradient(to right, rgb(214, 214, 241), rgb(122, 129, 122)) ;
+}
+/* Styling for the "Go Back" link */
+.go-back {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.go-back:hover {
+    color: #0056b3;
+}
+
+/* Styling for the back arrow icon */
+.back-arrow {
+    margin-right: 5px;
+    font-size: 24px;
+}
+
+/* Styling for the entire form */
+.custom-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Styling for each form group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Styling for form field labels */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Styling for form fields */
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Styling for the submit button */
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+

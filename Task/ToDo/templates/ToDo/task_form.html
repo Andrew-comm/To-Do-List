@@ -1,7 +1,42 @@
-<a href="{% url 'tasks' %}">Go Back</a>
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<!-- 
+<div class="task-create">
+    <a class="go-back" href="{% url 'tasks' %}">Go Back</a>
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{form.as_p}}
     
-    <input type="submit" value="Submit">
+    <input   class="btn-submit" type="submit" value="Submit">
 </form>
+
+</div> -->
+
+<a class="go-back" href="{% url 'tasks' %}">
+    <span class="back-arrow">&larr;</span> Go Back
+</a>
+
+<form class="custom-form" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div class="form-group">
+        <label for="{{ form.title.id_for_label }}">Title:</label>
+        {{ form.title }}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.description.id_for_label }}">Description:</label>
+        {{ form.description }}
+    </div>
+    
+    <div class="form-group">
+        <label for="{{ form.complete.id_for_label }}">Complete:</label>
+        {{ form.complete }}
+    </div>   
+    
+
+    <input class="submit-button" type="submit" value="Submit">
+</form>
+
+
