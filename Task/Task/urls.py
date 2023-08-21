@@ -22,9 +22,11 @@ from django.conf.urls.static import static
 
 from ToDo import views
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth import views as auth_views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('view-profile', views.UserProfileDetailView.as_view(), name='view-profile'),
+    path('profile/<str:pk>/', views.ProfileDetailView.as_view(), name='profile'),
     path('login', views.CutomLogin.as_view(), name='login'),
     path('register', views.RegisterPage.as_view(), name='register'),
     path('logout', LogoutView.as_view(next_page = 'login'), name='logout'),
@@ -33,6 +35,8 @@ urlpatterns = [
     path('task-create', views.TaskCreate.as_view(), name='task-create'),
     path('task-update/<int:pk>/', views.TaskUpdate.as_view(), name='task-update'),
     path('task-delete/<int:pk>/', views.TaskDelete.as_view(), name='task-delete'),
+    
 ]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

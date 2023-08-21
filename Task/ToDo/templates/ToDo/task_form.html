@@ -1,21 +1,6 @@
 
 {% load static %}
 <link rel="stylesheet" href="{% static 'styles.css' %}">
-<!-- 
-<div class="task-create">
-    <a class="go-back" href="{% url 'tasks' %}">Go Back</a>
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form.as_p}}
-    
-    <input   class="btn-submit" type="submit" value="Submit">
-</form>
-
-</div> -->
-
-<a class="go-back" href="{% url 'tasks' %}">
-    <span class="back-arrow">&larr;</span> Go Back
-</a>
 
 <form class="custom-form" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
@@ -37,6 +22,11 @@
     
 
     <input class="submit-button" type="submit" value="Submit">
+    <br>
+
+    <button class="submit-button"><a href="{% url 'tasks' %}">Cancel</a></button>
 </form>
+
+
 
 

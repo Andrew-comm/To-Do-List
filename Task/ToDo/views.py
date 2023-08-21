@@ -1,13 +1,14 @@
 from typing import Any, Dict
 from django.forms.models import BaseModelForm
 from django.http import HttpRequest, HttpResponse
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView,UpdateView, DeleteView, FormView
 
-from . models import Task, customProfile
+from . models import Task, UserProfile
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -50,10 +51,10 @@ class RegisterPage(FormView):
 
 
 
-class TaskList(LoginRequiredMixin, ListView):
-    model = Task
-    context_object_name = 'tasks'
 
+class TaskList(LoginRequiredMixin, ListView):
+    model = Task    
+    context_object_name = 'tasks'    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['tasks'] =  context['tasks'] .filter(user = self.request.user)
@@ -96,38 +97,7 @@ class TaskDelete(LoginRequiredMixin, DeleteView):
     context_object_name = 'tasks'
     template_name = 'ToDo/tasks_form.html'
 
-class UserProfileDetailView(LoginRequiredMixin, DetailView):
-    model = customProfile
-    template_name = 'view_profile.html'
-    context_object_name = 'user_profile'
-
-    def get_object(self, queryset=None):
-        user_profile, created = customProfile.objects.get_or_create(user=self.request.user)
-        return user_profile
-
-# @login_required
-# def view_profile(request):
-#     return UserProfileDetailView.as_view()(request)
-
-
-# class UserProfileCreateView(LoginRequiredMixin, CreateView):
-#     model = customProfile
-#     template_name = 'profile_create.html'
-#     fields = ['profile']
-#     success_url = reverse_lazy('tasks')  # Replace 'profile' with your profile URL name
-
-#     def form_valid(self, form):
-#         form.instance.user = self.request.user
-#         return super().form_valid(form)
-
-
-# class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
-#     model = customProfile
-#     template_name = 'profile_form.html'
-#     fields = ['profile']
-#     success_url = reverse_lazy('tasks')  # Replace 'profile' with your profile URL name
-
-#     def get_object(self, queryset=None):
-#         # Override the get_object method to fetch the user's customProfile instance
-#         # associated with the currently logged-in user.
-#         return self.request.user.customprofile
+class ProfileDetailView(DetailView):
+    model = UserProfile
+    template_name = 'profile_detail.html'
+    context_object_name = 'profile'

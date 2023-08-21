@@ -7,6 +7,7 @@ class Task(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True)
     complete = models.BooleanField(default=False)
+    completion_date = models.DateTimeField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -15,18 +16,18 @@ class Task(models.Model):
     class Meta:
         ordering = ['complete']
 
-class customProfile(models.Model):
+class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, related_name='userprofile')
-    profile = models.ImageField(upload_to='image/', blank=True)
+    profile_image = models.ImageField(upload_to='image/', blank=True)
 
     def __str__(self) :
         return self.user.username
 
-    def save(self, *args, **kwargs):
-        super(customProfile, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     super(customProfile, self).save(*args, **kwargs)
 
-        if self.profile:
-            img = Image.open(self.profile.path)
-            max_size = (80, 80)  # Set the maximum size you want for the image
-            img.thumbnail(max_size)
-            img.save(self.profile.path)
+    #     if self.profile:
+    #         img = Image.open(self.profile.path)
+    #         max_size = (80, 80)  # Set the maximum size you want for the image
+    #         img.thumbnail(max_size)
+    #         img.save(self.profile.path)
