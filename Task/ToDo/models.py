@@ -5,7 +5,7 @@ from PIL import Image
 class Task(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
-    description = models.TextField(null=True)
+    description = models.TextField(blank=True,null=True)
     complete = models.BooleanField(default=False)
     completion_date = models.DateTimeField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
