@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-effb_m#mo2idgi6t1cfxu!&!y(nf))*&3l-h=&*9mv7^2)q50%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://andreas-to-dos.onrender.com']
 
 
 # Application definition
