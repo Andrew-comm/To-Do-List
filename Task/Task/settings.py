@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+
+from dotenv import load_dotenv
+load_dotenv()
 # settings.py
 
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
@@ -24,12 +27,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-effb_m#mo2idgi6t1cfxu!&!y(nf))*&3l-h=&*9mv7^2)q50%'
+SECRET_KEY = str(os.getenv('CUSTOM_SECTRET_KEY')) 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['andreas-to-dos.onrender.com']
+
+ALLOWED_HOSTS = ['*']#andreas-to-dos.onrender.com
 
 
 # Application definition
@@ -86,8 +90,12 @@ WSGI_APPLICATION = 'Task.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('CUSTOM_DB'),#database name
+        'USER': os.getenv('CUSTOM_USER'),
+        'PASSWORD': os.getenv('CUSTOM_PASSWORD'),#password
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
