@@ -1,2 +1,2 @@
-web: gunicorn Task.Task.wsgi
+web: gunicorn Task/Task.wsgi
 
