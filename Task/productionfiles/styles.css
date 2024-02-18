@@ -108,6 +108,12 @@
     border: 1px solid black;
   }
 
+  #tasks h3{
+    text-shadow: 1px solid #333;
+    justify-content: center;
+    text-align: center;
+
+  }
 
  
 .form-container {
