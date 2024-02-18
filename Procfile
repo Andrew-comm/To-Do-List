@@ -1,1 +1,2 @@
-web: gunicorn To-Do-List.Task.wsgi
+web: gunicorn Task.wsgi
+
