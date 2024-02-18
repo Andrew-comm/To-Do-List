@@ -1,2 +1,2 @@
-web: gunicorn TO-D0-LIST/Task.wsgi
+web: gunicorn Task.Task.wsgi
 
