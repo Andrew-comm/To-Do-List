@@ -1,11 +1,83 @@
 {% load static %}
-<link rel="stylesheet" href="{% static 'styles.css' %}">
 
-<div class="login-container">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input class="btn-submit" type="submit" value="Login">
-        <p>Don't have an account?</p><a class="register-link" href="{% url 'register' %}">Register</a>
-    </form>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Login</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">    
+</head>
+
+<style>
+    .login-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f5f5f5;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        text-align: center; /* Align text in the center */
+    }
+
+    .login-container h2 {
+        font-size: 24px;
+        margin-bottom: 10px; /* Add some space between header and paragraph */
+    }
+    .login-container span{
+        color: #ff009d;
+        font-size: 18px;
+
+    }
+
+    .login-container p {
+        font-size: 16px;
+        margin-bottom: 20px; /* Add some space at the bottom */
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .btn-submit {
+        background-color: #007BFF;
+        color: #fff;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-submit:hover {
+        background-color: #0056b3;
+    }
+
+    .register-link {
+        text-decoration: none;
+        color: #007BFF;
+    }
+
+    .register-link:hover {
+        color: #0056b3;
+    }
+</style>
+<body>
+    <div class="login-container">
+        <h2>Welcome to TaskMaster</h2>
+        <span>Efficient Task Management System</span>
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="btn-submit" type="submit" value="Login">
+            <p>Don't have an account?</p><a class="register-link" href="{% url 'register' %}">Register</a>
+        </form>
+    </div>
+    
+</body>
+</html>
